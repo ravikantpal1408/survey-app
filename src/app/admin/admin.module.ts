@@ -1,3 +1,4 @@
+import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminRoutingModule } from './admin.routes';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     AdminRoutingModule
   ],
-  declarations: [AdminComponent]
+  declarations: [AdminComponent, AdminHomeComponent],
+  bootstrap: [AdminComponent]
 })
 export class AdminModule { }

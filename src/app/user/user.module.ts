@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
 import { UserRoutingModule } from './user.routes';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserHomeComponent } from './user-home/user-home.component';
 
 
 
@@ -16,7 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [
     CommonService
   ],
-
-  declarations: [UserComponent]
+  declarations: [UserComponent, UserHomeComponent],
+  bootstrap: [UserComponent]
 })
 export class UserModule { }

@@ -7,7 +7,92 @@
     </div>
     <div class="row text-center text-mute">
       <div class="col-md-12">
-        <h2>Create A Survey</h2>
+        <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+          <div class="card m-3">
+            <h5 class="card-header">
+              Create a survey for user
+            </h5>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group" style="width: 100%;">
+                  <input
+                    type="text"
+                    placeholder="Whar survey you want to create ?"
+                    formControlName="surveyAbout"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group" style="width: 100%;">
+                  <label>Number of Options</label>
+                  <select
+                    formControlName="numberOfTickets"
+                    class="form-control"
+                    (change)="onChangeTickets($event)"
+                    [ngClass]="{
+                      'is-invalid': submitted && f.numberOfTickets.errors
+                    }"
+                  >
+                    <option value="">Select Options</option>
+                    <option *ngFor="let i of [1, 2, 3, 4, 5]">{{ i }}</option>
+                  </select>
+                  <div
+                    *ngIf="submitted && f.numberOfTickets.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.numberOfTickets.errors.required">
+                      Number of tickets is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngFor="let ticket of t.controls; let i = index"
+              class="list-group list-group-flush"
+            >
+              <div class="list-group-item">
+                <h5 class="card-title">Survey Options {{ i + 1 }}</h5>
+                <div [formGroup]="ticket" class="form-row">
+                  <div class="form-group col-12">
+                    <input
+                      type="text"
+                      formControlName="name"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid': submitted && ticket.get('name').errors
+                      }"
+                    />
+                    <div
+                      *ngIf="submitted && ticket.get('name').errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="ticket.get('name').errors.required">
+                        Name is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <button class="btn btn-primary mr-1">Create a Survey</button>
+              <button
+                class="btn btn-secondary mr-1"
+                type="reset"
+                (click)="onReset()"
+              >
+                Reset
+              </button>
+              <button
+                class="btn btn-secondary"
+                type="button"
+                (click)="onClear()"
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

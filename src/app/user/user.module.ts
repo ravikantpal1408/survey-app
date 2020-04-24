@@ -1,3 +1,4 @@
+import { CommonService } from './../services/common.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
@@ -12,7 +13,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    CommonService
+  ],
 
   declarations: [UserComponent]
 })

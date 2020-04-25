@@ -15,7 +15,6 @@ import { UserHomeComponent } from './user-home/user-home.component';
     ReactiveFormsModule,
   ],
   providers: [
-    CommonService
   ],
   declarations: [UserComponent, UserHomeComponent],
   bootstrap: [UserComponent]

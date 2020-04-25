@@ -1,3 +1,4 @@
+import { CommonService } from './services/common.service';
 import { RouterModule } from '@angular/router';
 import { AdminModule } from './admin/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,7 +25,9 @@ import { UserModule } from './user/user.module';
     UserModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [
+    CommonService
+  ],
   bootstrap: [
     AppComponent
   ]

@@ -1,3 +1,4 @@
+import { CommonService } from './../../services/common.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 
@@ -10,7 +11,7 @@ export class AdminHomeComponent implements OnInit {
   dynamicForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private commonService: CommonService) { }
 
   ngOnInit() {
     this.dynamicForm = this.formBuilder.group({
@@ -47,6 +48,11 @@ export class AdminHomeComponent implements OnInit {
     if (this.dynamicForm.invalid) {
       return;
     }
+
+
+    this.commonService.surveyData.push(this.dynamicForm.value)
+
+    console.log('admin section : ', this.commonService.surveyData)
 
     // display form values on success
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.dynamicForm.value, null, 4));

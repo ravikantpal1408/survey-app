@@ -5,5 +5,49 @@
         <h1>User Home</h1>
       </div>
     </div>
+    <div class="row text-center text-mute">
+      <div class="col-md-12">
+        <div class="card m-3">
+          <h5 class="card-header">
+            Take a Survey
+          </h5>
+
+          <div class="card-body">
+            <div
+              class="form-row"
+              *ngFor="let suv of surveyForUserModel; let i = index"
+            >
+              <h4>Q{{ i + 1 }}. {{ suv.surveyAbout }}</h4>
+              <div
+                class="col-sm-12"
+                *ngFor="let ticks of suv.tickets; let j = index"
+              >
+                <div class="radio">
+                  <label style="padding: 5px;"
+                    >&nbsp;&nbsp;<input
+                      type="radio"
+                      name="optradio"
+                      value="{{ ticks.name }}"
+                      (change)="selectedSurveyOpt($event)"
+                    />
+                    {{ ticks.name }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer text-center">
+            <button
+              class="btn btn-primary mr-1"
+              (click)="submitSurvey()"
+              [disabled]="surveyForUserModel.length === 0"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

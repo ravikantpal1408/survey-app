@@ -1,3 +1,4 @@
+import { CommonService } from './../../services/common.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserHomeComponent implements OnInit {
 
-  constructor() { }
+  surveyForUserModel: any[] = []
+
+  checkedRadioSurveyOpt: string;
+
+  constructor(private commonService: CommonService) { }
+
 
   ngOnInit() {
+    console.log('uesr section : ', this.commonService.surveyData)
+
+    this.surveyForUserModel = this.commonService.surveyData
+  }
+
+
+  submitSurvey() {
+    console.log('submit click')
+    alert('ok now submitting choosen value => ' + this.checkedRadioSurveyOpt)
+    //
+  }
+
+  selectedSurveyOpt(event) {
+    console.log('evenyt', event)
+
+    console.log('bingo i chose one : ', event.target.value)
+    this.checkedRadioSurveyOpt = event.target.value
   }
 
 }
